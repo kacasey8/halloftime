@@ -1,0 +1,22 @@
+{
+    "versionLabel": "1.0",
+    "uuid": "43aad9a5-bff8-4e32-984c-65e37502f2ad",
+    "appKeys": {
+        "KEY_STATUS": 0,
+        "KEY_SUM": 2,
+        "KEY_MESSAGE": 1
+    },
+    "longName": "Hall of Time",
+    "versionCode": 1,
+    "capabilities": [
+        ""
+    ],
+    "shortName": "Hall of Time",
+    "companyName": "anson@apparentetch.com",
+    "watchapp": {
+        "watchface": false
+    },
+    "resources": {
+        "media": []
+    }
+}

@@ -1,6 +1,6 @@
 <h1>Project: <%= @project.name %></h1>
 
-<p>Total hours spent on project: <b> <%= @hours.to_s + ":" + (@hours  > 9 ? @minutes.to_s : "0" + @minutes.to_s ) %> </b> (h:mm)</p>
+<p>Total hours spent on project: <b> <%= @hours.to_s + ":" + (@minutes  > 9 ? @minutes.to_s : "0" + @minutes.to_s ) %> </b> (h:mm)</p>
 
 
 
