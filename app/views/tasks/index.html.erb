@@ -8,6 +8,7 @@
       <th>Project</th>
       <th>Hours</th>
       <th>Minutes</th>
+      <th>Start</th>
       <th></th>
       <th></th>
     </tr>
@@ -21,6 +22,7 @@
         <td><%= link_to task.project.name, task.project %></td>
         <td><%= task.hours %></td>
         <td><%= task.minutes %></td>
+        <td><%= task.startTime %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
