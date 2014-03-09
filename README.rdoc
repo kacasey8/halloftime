@@ -1,12 +1,16 @@
-== README
+=== README
 
 Hall of Time
+Ruby on Rails app
+Currently running on http://halloftime.herokuapp.com/user/calendar/3
 
-* Server setup - Currently running on http://halloftime.herokuapp.com/user/calendar/3
+= Local setup 
+ - git clone, 
+ - rake db:create
+ - rake db:migrate
+ - rake db:seed 
+ - login as admin@test.com with password '12345678'
 
-- Local setup -> git clone, rake db:create, rake db:migrate, rake db:seed login as admin@test.com with password '12345678'
-
-?
 
 * Pebble watch
  - Run <code>pebble build</code> in the pebble_project_viewer directory to build the watchface. 
@@ -16,3 +20,9 @@ Hall of Time
 - Known Bugs
  - Calendar updates on event creation rather than submission (presentation hack)
  - UTC vs PST bug on Calendar input.  Time is 7 hours behind.
+ 
+ == Credits
+  - Kevin Casey (only one who knew rails beforehand, thanks for working with me xD) - Backend/Routing
+  - Anson Liu - JQuery Slider and Pebble application
+  - Jack Chou - Calendar
+  - Steven Hewitt - Front End
