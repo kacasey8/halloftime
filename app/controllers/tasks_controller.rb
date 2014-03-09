@@ -44,8 +44,8 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    task_params[:hours] = params[:minutes].to_i / 60
-    task_params[:minutes] = params[:minutes].to_i % 60
+    params[:task][:hours] = params[:minutes].to_i / 60
+    params[:task][:minutes] = params[:minutes].to_i % 60
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
