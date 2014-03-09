@@ -27,6 +27,8 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user = current_user unless @task.user
+    @task.hours = params[:minutes].to_i / 60
+    @task.minutes = params[:minutes].to_i % 60
 
     respond_to do |format|
       if @task.save

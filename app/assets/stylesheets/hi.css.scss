@@ -1,0 +1,31 @@
+section {  
+ 
+}  
+
+#slider {
+	display: inline-block;
+	height: 10px;
+	width: 300px;
+	text-align: center;
+	z-index: 20;
+}
+
+#sliderText {
+	z-index: 30;
+}
+
+.tooltip {
+	position: absolute;
+	display: block;
+	width: 35px;
+	height: 20px;
+	text-align: center;
+	font: 10pt Tahoma, Arial, sans-serif ;
+	border-radius: 3px;
+	border: 1px solid #333;
+	box-sizing: border-box;
+}
+
+.minutesSlider {
+	
+}

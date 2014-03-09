@@ -19,14 +19,27 @@
     <%= f.label :project_id %><br>
     <%= f.select :project_id, options_from_collection_for_select(@projects, :id, :name) %>
   </div>
-  <div class="field">
-    <%= f.label :hours %><br>
-    <%= f.number_field :hours %>
+
+  <div id="minutesSlider" class="well">
+  <input id="taskMinutes" type="hidden" name="minutes">
+  <div class="well">
+
+
+  <span id="currentLabel">slider value</span>
   </div>
-  <div class="field">
-    <%= f.label :minutes %><br>
-    <%= f.number_field :minutes %>
+  <div>
+  <section>
+  <button type="button" class="btn btn-default" id="decrease"><span class="glyphicon glyphicon-resize-small"></span></button>
+  <span id="minTimeLabel"></span>
+  <span class="tooltip">test</span>
+  <div id="slider"></div>
+  <span id="maxTimeLabel"></span>
+  <button type="button" class="btn btn-default" id="increase"><span class="glyphicon glyphicon-resize-full"></span></button>
+  </section>
   </div>
+  </div>
+  <script src="js/timeslider.js"></script>
+  <script src="js/objects.js"></script>
   <div class="actions">
     <%= f.submit %>
   </div>
