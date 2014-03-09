@@ -24,7 +24,7 @@
 
 /* Space out content a bit */
 body {
-  padding-top: 20px;
+  padding-top: 5px;
   padding-bottom: 20px;
 }
 
@@ -54,6 +54,10 @@ body {
   color: #777;
   border-top: 1px solid #e5e5e5;
 }
+
+
+
+
 
 /* Customize container */
 @media (min-width: 768px) {
@@ -114,6 +118,15 @@ body {
   font-size: 15px;
 }
 
+
+.actionbar {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.logo {
+  /*border-bottom: 1px solid #e5e5e5;*/
+}
+
 #defaultTable
 {
     font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -123,7 +136,7 @@ body {
 #defaultTable td, #defaultTable th 
 {
     font-size:1em;
-    border:1px solid #2a942f;
+    border:1px solid #0083ca;
     padding:3px 7px 2px 7px;
 }
 #defaultTable th 
@@ -132,7 +145,7 @@ body {
     text-align:left;
     padding-top:5px;
     padding-bottom:4px;
-    background-color:#2a942f;
+    background-color:#0083ca;
     color:#ffffff;
 }
 #defaultTable tr.alt td 
