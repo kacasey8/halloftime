@@ -31,6 +31,7 @@
 
   <div class="field">
     <%= f.label :hours %>
+    <input id="originalMinutes" type="hidden" value='<%= @task.hours*60 + @task.minutes if @task.hours %>'>
     <div id="minutesSlider">
       <input id="taskMinutes" type="hidden" name="minutes">
       <span id="currentLabel">slider value</span>
@@ -74,6 +75,13 @@
     this.maxTimeLabel.text(this.maxMinutes / 60 + " hr");
     this.currentLabel.text(Math.floor(this.maxMinutes / 2 / 60) + " hr " + this.maxMinutes / 2 % 60 + " min");
     this.input.val(this.maxMinutes / 2);
+
+    if ($("#originalMinutes").val() != -1) {
+      window.alert($("#originalMinutes").val());
+      this.currentLabel.text($("#originalMinutes").val() +  " min");
+      this.obj.slider("value", $("#originalMinutes").val());
+      this.input.val($("#originalMinutes").val());
+    }
 
     this.update = update;
     function update(max) {
