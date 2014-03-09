@@ -590,7 +590,7 @@ table.fc-border-separate {
     
 </style>
 
-<%= link_to 'SUBMIT EVENTS', set_tasks_for_user_path, :class => 'btn btn-primary' %>
+<%= link_to 'SUBMIT EVENTS', current_user, :class => 'btn btn-primary' %>
 <div id='calendar'></div>
 <script>
 var hacks;
