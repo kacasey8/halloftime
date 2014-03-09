@@ -45,7 +45,7 @@
   </div>
   <br>
   <div class="actions">
-    <%= f.submit 'Create', :class => 'btn btn-primary' %>
+    <%= f.submit nil, :class => 'btn btn-primary' %>
   </div>
   <br>
 <% end %>
@@ -131,9 +131,5 @@
     $("#decrease").click(function() {
       timeSlider.update(timeSlider.maxMinutes -= 60);
     });
-  });
-
-  $( window ).load(function() {
-
   });
 </script>
