@@ -10,33 +10,45 @@
     <center>
 <% if user_signed_in? %>
     
-        
+  <div class="actionbar">
+      
   <span id="userbar" class="userbar">Welcome, <%= current_user.email %></span>
-  <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
-  
-  | <%= image_tag "ic_action_event_m.png" %><%= link_to 'Dashboard', '/pages/dashboard' %>
-  | <%= image_tag "ic_action_paste_m.png" %><%= link_to 'Projects', projects_path %>
-  | <%= image_tag "ic_action_group_m.png" %><%= link_to 'Users', '/user/index' %>
-  | <%= image_tag "ic_action_paste_m.png" %><%= link_to 'Tasks', tasks_path %>
-  | <%= image_tag "ic_action_about.png" %><%= link_to 'About', '/pages/about' %>
-  
+      <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
+      
+      | <%= image_tag "ic_action_event_m.png" %><%= link_to 'Dashboard', '/pages/dashboard' %>
+      | <%= image_tag "ic_action_paste_m.png" %><%= link_to 'Projects', projects_path %>
+      | <%= image_tag "ic_action_group_m.png" %><%= link_to 'Users', '/user/index' %>
+      | <%= image_tag "ic_action_paste_m.png" %><%= link_to 'Tasks', tasks_path %>
+      | <%= image_tag "ic_action_about.png" %><%= link_to 'About', '/pages/about' %>
+      
+      </div>
+      <!-- These two divs are for the jumbotron to not activate here -->
+    <div>
+    <div>
   
 <% else %>
 
-    <h1> <%= image_tag "IconBlue.png" %> Hall of Time</h1>
-    <div class="subtitle">Timesheet management made simple.</div>
     
-    <br>
-    <br>
+
     
     
+    <div class="actionbar">
+       <span class="userbar"><%= link_to "Sign In", new_user_session_path %> 
+       | <%= link_to "Create an Account", new_user_registration_path %></span>
+    </div>
+    
+    <div class="logo">
+        <h1> <%= image_tag "IconBlue.png" %> Hall of Time</h1>
+        <div class="subtitle">Timesheet management made simple.</div>
+        <br>
+    </div>
+       
+       
     <div class="container">
-        <div class="jumbotron">
-       <%# <span class="userbar"><%= link_to "Log In", new_user_session_path %> 
-       <%#| <%= link_to "Register", new_user_registration_path %></span>
-      
+     <div class="jumbotron">
 
 <% end %>
+
 
 
 

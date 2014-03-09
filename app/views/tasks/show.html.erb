@@ -1,29 +1,30 @@
-<h1>Task</h1>
+<h1>Task: <%= @task.name %></h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @task.name %>
-</p>
+<table id="invisTable">
 
-<p>
-  <strong>User:</strong>
-  <%= link_to @task.user.email, @task.user %>
-</p>
+    <tr>
+      <th><strong>User:</strong></th>
+      <th><%= link_to @task.user.email, @task.user %></th>
+    <tr>
 
-<p>
-  <strong>Project:</strong>
-  <%= link_to @task.project.name, @task.project %>
-</p>
+    <tr>
+      <th><strong>Project:</strong></th>
+      <th><%= link_to @task.project.name, @task.project %></th>
+    <tr>
 
-<p>
-  <strong>Hours:</strong>
-  <%= @task.hours %>
-</p>
+    <tr>
+      <th><strong>Hours:</strong></th>
+      <th><%= @task.hours %></th>
+    <tr>
 
-<p>
-  <strong>Minutes:</strong>
-  <%= @task.minutes %>
-</p>
+    <tr>
+      <th><strong>Minutes:</strong></th>
+      <th><%= @task.minutes %></th>
+    <tr>
+
+</table>
+
+<br>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
