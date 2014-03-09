@@ -14,7 +14,6 @@
   <div class="actionbar">
       
   <span id="userbar" class="userbar">Welcome, <%= link_to current_user.email, current_user %></span> |
-      <%= link_to "Change your password", edit_user_registration_path %> |
       <%= link_to 'Logout', destroy_user_session_path, :method => :delete %> |
       
 
