@@ -18,8 +18,8 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.name %></td>
-        <td><%= task.user.email %></td>
-        <td><%= task.project.name %></td>
+        <td><%= link_to task.user.email, task.user %></td>
+        <td><%= link_to task.project.name, task.project %></td>
         <td><%= task.hours %></td>
         <td><%= task.minutes %></td>
         <td><%= link_to 'Show', task %></td>

@@ -15,7 +15,7 @@
   <% @project.tasks.each do |task| %>
     <tr>
       <td><%= link_to task.name, task %></td>
-      <td><%= task.user.email %></td>
+      <td><%= link_to task.user.email, task.user %></td>
       <td><%= task.hours %></td>
       <td><%= task.minutes %></td>
     </tr>
