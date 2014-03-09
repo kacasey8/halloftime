@@ -131,6 +131,14 @@
             name = $("#task_name").val();
             id = $("#task_project_id").val();
             pname = $("#task_project_id").val();
+            if (name == "") {
+                showMessage("Enter a name for the task");
+           
+                
+                return;
+            }
+            
+            
             if (currentTaskBool) {
                 showMessage("<b><i> " + currentTaskName + "</i></b> has ended.  Now starting <b><i>" + name + "</i></b>.  It will automatically log how many hours when you end the task.");
             } else {
@@ -215,8 +223,12 @@
         function showMessage(msg) {
             $("#msg").html("<p>" + msg + "</p>");
             $("#msg").stop();
-            $("#msg").show(100);
+            $("#msg").stop();
+            $("#msg").show(50);
             $("#msg").delay(8000).hide(100);
+            
+            //$("#msg").scrollIntoView( true );
+            $(window).scrollTop( $('#msg').position().top );
         }
 
         function updateTaskInfo(name, proj_id, proj_name, bool) {
