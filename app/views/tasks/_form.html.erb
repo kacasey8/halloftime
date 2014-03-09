@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -18,31 +19,27 @@
   <div class="field">
     <%= f.label :project_id %><br>
     <%= f.select :project_id, options_from_collection_for_select(@projects, :id, :name) %>
+    <%= f.hidden_field :done, :value => true %>
   </div>
 
   <br>
 
   <div class="field">
     <%= f.label :hours %>
-  <div id="minutesSlider">
-  <input id="taskMinutes" type="hidden" name="minutes">
-
-  <%#= f.text_field :done, :value => true %>
-
-
-  <span id="currentLabel">slider value</span>
-  </div>
-  <div>
-  <section>
-  <button type="button" class="btn btn-default" id="decrease"><span class="glyphicon glyphicon-resize-small"></span></button>
-  <span id="minTimeLabel"></span>
-  <span class="tooltip">test</span>
-  <div id="slider"></div>
-  <span id="maxTimeLabel"></span>
-  <button type="button" class="btn btn-default" id="increase"><span class="glyphicon glyphicon-resize-full"></span></button>
-  </section>
-  </div>
-  </div>
+    <div id="minutesSlider">
+      <input id="taskMinutes" type="hidden" name="minutes">
+      <span id="currentLabel">slider value</span>
+    </div>
+    <div>
+      <section>
+        <button type="button" class="btn btn-default" id="decrease"><span class="glyphicon glyphicon-resize-small"></span></button>
+        <span id="minTimeLabel"></span>
+        <span class="tooltip">test</span>
+        <div id="slider"></div>
+        <span id="maxTimeLabel"></span>
+        <button type="button" class="btn btn-default" id="increase"><span class="glyphicon glyphicon-resize-full"></span></button>
+      </section>
+    </div>
   </div>
   <br>
   <div class="actions">
@@ -108,7 +105,7 @@
 
   var timeSlider;
 
-  $( document ).ready(function() {
+  $(function() {
 
     timeSlider = new Slider($("#slider"), $("#maxTimeLabel"), $("#minTimeLabel"), $("#currentLabel"), $("#decrease"), $("#increase"), $("#taskMinutes"));
 
