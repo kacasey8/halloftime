@@ -144,7 +144,7 @@
             name = $("#task_name").val();
             id = $("#task_project_id").val();
             pname = $("#task_project_id").val();
-            updateTaskInfoAndSendToServer(name, id, pname, true);
+            updateTaskInfo(name, id, pname, true);
 
             /// send info of fields to server
             ///
@@ -216,7 +216,7 @@
             
         }
         
-        function updateTaskInfoAndSendToServer(name, proj_id, proj_name, bool) {
+        function updateTaskInfo(name, proj_id, proj_name, bool) {
             ///// TODO, retrieve user's data from server!
             /// send info of fields to server
             ///
