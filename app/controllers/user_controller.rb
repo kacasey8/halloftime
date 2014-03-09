@@ -1,6 +1,5 @@
 class UserController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :self_or_admin!, only: [:set_current_task, :complete_current_task, :tasks, :set_tasks]
   before_filter :authenticate_admin!, only: [:approve_account, :promote, :destroy]
 
   def self_or_admin!
@@ -22,7 +21,7 @@ class UserController < ApplicationController
   def set_current_task
     temp_task = Task.create(name: params[:name], user: current_user, project_id: params[:project_id], hours: 0, minutes: 0, startTime: Time.now)
     current_user.update_attribute(:currentTask_id, temp_task.id)
-    render json: {project: temp_task.project.name, time: temp_task.startTime.to_formatted_s(:short) }
+    render json: { project: temp_task.project.name, time: temp_task.startTime.to_formatted_s(:short) }
   end
 
   def complete_current_task
@@ -47,7 +46,7 @@ class UserController < ApplicationController
       seconds = task.end - task.start
       hours = seconds / 3600
       minutes = seconds / 60
-      temp_task.update_attributes(name: task.title, startTime: task.start, hours: hours.floor, minutes: minutes.floor)
+      temp_task.update_attributes(name: task.title, startTime: task.start, hours: hours.floor, minutes: minutes.floor user: current_user)
       if !temp_task.valid?
         temp_project = Project.where(name: "UNKNOWN").first_or_create
         temp_task.update_attribute(:project_id, temp_project.id)
