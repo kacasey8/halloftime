@@ -16,12 +16,8 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>(Leave blank for yourself)
-  </div>
-  <div class="field">
     <%= f.label :project_id %><br>
-    <%= f.number_field :project_id %>
+    <%= f.select :project_id, options_from_collection_for_select(@projects, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :hours %><br>
