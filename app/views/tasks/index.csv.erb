@@ -1,0 +1,4 @@
+Name, User, Project, Hours, Minutes
+<%- @tasks.each do |t| -%>
+<%= [:name, :hours, :minutes].collect{|s| t.send(s)}.join(',') %>
+<%- end -%>

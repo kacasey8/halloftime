@@ -4,6 +4,7 @@ class TasksController < ApplicationController
 
   # GET /tasks
   # GET /tasks.json
+  # GET /tasks.csv
   def index
     @tasks = Task.all
   end
@@ -44,8 +45,8 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    task_params[:hours] = params[:minutes].to_i / 60
-    task_params[:minutes] = params[:minutes].to_i % 60
+    params[:task][:hours] = params[:minutes].to_i / 60
+    params[:task][:minutes] = params[:minutes].to_i % 60
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
@@ -79,6 +80,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:name, :user_id, :project_id, :hours, :minutes)
+      params.require(:task).permit(:name, :user_id, :project_id, :hours, :minutes, :done)
     end
 end
