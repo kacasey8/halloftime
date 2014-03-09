@@ -4,6 +4,7 @@ HallOfTime::Application.routes.draw do
   get "pages/about"
   get "user/index", as: :users
   match "user/set_current_task", to: "user#set_current_task", via: :get, as: :users_current_task
+  match "user/complete_current_task", to: "user#complete_current_task", via: :get, as: :users_complete_task
   match "user/:id", to: "user#show", via: :get, as: :user
   resources :projects
   root to: "pages#dashboard"

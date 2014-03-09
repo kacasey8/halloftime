@@ -111,7 +111,7 @@
             name = $("#task_name").val();
             id = $("#task_project_id").val();
             pname = $("#task_project_id").val();
-            updateTaskInfoAndSendToServer(name, id, pname, true);
+            updateTaskInfo(name, id, pname, true);
 
             $.ajax({
                 type: "GET",
@@ -130,7 +130,14 @@
         
         $("#cancelCurrentTask").click(function(event){
             event.preventDefault();
-            updateTaskInfoAndSendToServer("", "", "", false);
+            updateTaskInfo("", "", "", false);
+            $.ajax({
+                type: "GET",
+                url: '/user/complete_current_task/',
+                success: function(data) {
+                    window.alert(data.id);
+                }
+            });
             //$("#createNewTask").hide();
 
         });
@@ -168,8 +175,8 @@
             $("#currentProjectField").html("");
             
         }
-        
-        function updateTaskInfoAndSendToServer(name, proj_id, proj_name, bool) {
+
+        function updateTaskInfo(name, proj_id, proj_name, bool) {
             
             currentTaskBool = bool;
             if (bool) {
