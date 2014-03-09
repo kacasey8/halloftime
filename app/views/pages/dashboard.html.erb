@@ -194,10 +194,13 @@
             $("#currentTaskField").html("<b><i>no current task</i></b>");
             $("#currentProjectField").html("");
             
+            $("#hourglass").hide(100);
+            
         }
         
         function showMessage(msg) {
             $("#msg").html("<p>" + msg + "</p>");
+            $("#msg").stop();
             $("#msg").show(100);
             $("#msg").delay(5000).hide(500);
         }
@@ -213,7 +216,6 @@
                 $("#hourglass").show(100);
                 //$("#hourglass").html('<%= image_tag "hourglass1.gif" %>');
             } else {
-                $("#hourglass").hide(100);
                 setToNoCurrentTask();
             }
             
