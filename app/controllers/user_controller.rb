@@ -54,7 +54,7 @@ class UserController < ApplicationController
   end
 
   def tasks
-    render json: [{id: 111, title:"Event1", start: "2014-03-10", url:"http:\/\/yahoo.com\/"}]
+    render json: Task.where(user: User.find(params[:id])).map { |t| { id: t.id, title: t.name, start: t.startTime, :end => t.startTime + t.hours.hours + t.minutes.minutes }}
   end
 
   def calendar

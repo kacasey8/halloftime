@@ -592,7 +592,6 @@ table.fc-border-separate {
 
 <div id='calendar'></div>
 <script>
-var now = moment();
 $(document).ready(function(e) {
     var calendar = $('#calendar').fullCalendar({
         header:
@@ -609,7 +608,30 @@ $(document).ready(function(e) {
         selectable: true,
         selectHelper: true,
         editable: true,
-        events: "/user/calendar/test/1",
+        events: {
+            url: 'http://localhost:3000/user/calendar/test/1',
+            type: 'GET',
+            error: function() {
+                alert('there was an error while fetching events!');
+            },
+            success: function(reply) {
+                for (var x = 0; x < reply.length; x++) {
+                    var hi = reply[x];
+                    console.log(hi);
+                    calendar.fullCalendar('renderEvent',
+                        {
+                            title: hi.title,
+                            start: hi.start,
+                            end: hi.end,
+                            allDay: false
+                        },
+                        true
+                    );
+                }
+            },
+            color: 'yellow',   // a non-ajax option
+            textColor: 'black' // a non-ajax option
+        },
 
         // Callbacks
         select: function(start, end) {
