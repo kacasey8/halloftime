@@ -7,11 +7,67 @@
 <div class="container">
     <div class="jumbotron">
 
-        Hall of Time is a web app built for Lawrence Hall of Science in order to merge various timesheet methods together into 1, beautiful interface.  If you are an employee, create an account and start logging your hours.
+        <p>
+            You can  blah blah blah.......
+        </p>
+        
+        Your current task is: <div class="currentTaskField">___ </div> 
+        <div class="currentProjectField"> for project: ___ </div>
+        
+        <div id="nothingStuff">
+            <button id="openNewTaskMenu" class="btn new task">Start a new task</button>
+        </div>     
+               
+        <div id="somethingButtons">
+            <button id="openNewTaskMenu" class="btn new task">Start a new task</button>
+            <button id="cancelCurrentTask" class="btn btn-danger">End current task</button>
+        </div>            
+            
+
+        <div id="createNewTask">
+            <h1>Create new task:</h1>
+            <br>
+            
+            <table id="invisTable">
+                <%= form_for(Task.new) do |f| %>
+                
+                    <tr>
+                        <td><%= f.label :task_name %></td>
+                        <td><%= f.text_field :name %></td>
+                        
+                    
+                    </tr>
+                    
+                    <tr>
+                        <td><%= f.label :project_id %></td>
+                        <td><%= f.select :project_id, options_from_collection_for_select(Project.all, :id, :name) %></td>
+                    </tr>
+                    
+                    </table>
+                    <br>
+                    
+                    <div>
+                        <!--<div id="pause" class="btn btn-warning">Pause Task</div>-->
+                        <button id="start" class="btn btn-success">Start</button>
+                        <button id="cancel" class="btn btn-danger">Cancel</button>
+                    </div>
+                
+                
+            <% end %>
+        
+        </div>
+
 
     </div>
 </div>
 
+<!--<div id="currentTaskName"><%= @user. %></div> 
+<div id="currentTasksProjectName"><%= @user. %></div> 
+
+-->
+
+
+<!--
 <h1>Quick Task Create</h1>
 <%= form_for(Task.new) do |f| %>
     <div class="field">
@@ -36,38 +92,116 @@
         <button id="end" class="btn btn-danger">End Task</button>
     </div>
 <% end %>
-
+-->
 <script>
     $(function() {
-        var minutes = 0;
-        var recording = false;
-        $("#pause").hide();
+        //var minutes = 0;
+        //var recording = false;
+        
+        
+        
+        
+        currentTaskBool = false; // TODO parse from server
+        
+        $( document ).ready(function() {
+            $("#createNewTask").hide();
+        });
 
-        setInterval(function() {myTimer()}, 1000);
-        $("#start").click(function(event){
-            $("#hourglass").html('<%= image_tag "hourglass1.gif" %>');
-            $("#start").hide();
-            $("#pause").show();
-            event.preventDefault();
-            recording = true;
+        //setInterval(function() {myTimer()}, 1000);
+        $("#openNewTaskMenu").click(function(event){
+            //$("#hourglass").html('<%= image_tag "hourglass1.gif" %>');
             
-        });
-
-        $("#pause").click(function(event){
+            createTaskMode();
             event.preventDefault();
-            $("#pause").hide();
-            $("#start").show();
-            $("#hourglass").html('');
-            recording = false;
 
         });
 
-        function myTimer() {
+        $("#start").click(function(event){
+            event.preventDefault();
+            
+            /// send info of fields to server
+            ///
+            ///
+            ///
+            
+            $("#currentTaskField").replaceWith($("#task_name").val());
+            
+            
+            /////
+            
+            
+            defaultMode();
+
+        });
+        
+        $("#cancelCurrentTask").click(function(event){
+            event.preventDefault();
+            //$("#createNewTask").hide();
+
+        });
+        
+        $("#cancel").click(function(event){
+            event.preventDefault();
+            defaultMode();
+
+        });
+        
+        function defaultMode() {
+            $("#createNewTask").hide();
+            $("#openNewTaskMenu").show();
+            if (currentTaskBool) {
+                $("#somethingButtons").show();
+                $("#nothingButtons").hide();
+            } else {
+                $("#somethingButtons").hide();
+                $("#nothingButtons").show();
+            }
+            
+            
+        }
+        
+        function createTaskMode() {
+            $("#createNewTask").show();
+            $("#openNewTaskMenu").hide();
+            $("#somethingButtons").hide();
+            $("#nothingButtons").hide();
+        }
+        
+        function setToNoCurrentTask() {
+            currentTaskBool = false;
+            
+            $("#currentTaskField").replaceWith("<b><i>no current task</i></b>");
+            $("#currentProjectField").replaceWith("");
+            
+            
+            
+            
+        }
+        
+        function updateTaskInfoFromServer() {
+            ///// TODO, retrieve user's data from server!
+            currentTaskBool = true;
+            
+            $("#currentTaskField").replaceWith("<b><i>Coding!</i></b>");
+            $("#currentProjectField").replaceWith("project hackathon");
+            defaultMode();
+        }
+        
+        
+        // init functions:
+        defaultMode();
+        
+        setToNoCurrentTask();
+        
+        updateTaskInfoFromServer();
+        
+
+        /*function myTimer() {
             if (recording == true) {
                 minutes++;
                 $("#task_minutes").val(Math.floor(minutes/60));
             }
-        };
+        };*/
     });
 </script>
 
