@@ -7,10 +7,10 @@ class UserController < ApplicationController
   end
 
   def export
-    @users = User.all.sort_by! {|u| u.id}
-    respond_to do |format|
-      format.csv { send_data @users.to_csv }
-    end
+    #@tasks = Task.where
+    #respond_to do |format|
+    #  format.csv { send_data @users.to_csv }
+    #end
   end
 
   def index
