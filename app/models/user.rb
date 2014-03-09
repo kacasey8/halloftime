@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
   has_many :tasks, dependent: :destroy
 
   def currentTask
-    Task.find(self.currentTask_id)
+    if self.currentTask_id
+      Task.find(self.currentTask_id)
+    end
   end
 end

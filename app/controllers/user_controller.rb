@@ -15,6 +15,6 @@ class UserController < ApplicationController
   def set_current_task
     temp_task = Task.create(name: params[:name], user: current_user, project_id: params[:project_id], hours: 0, minutes: 0)
     current_user.update_attribute(:currentTask_id, temp_task.id)
-    render json: temp_task
+    render json: temp_task.project
   end
 end
