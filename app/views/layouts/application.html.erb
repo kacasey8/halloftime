@@ -14,9 +14,11 @@
   <span id="userbar" class="userbar">Welcome, <%= current_user.email %></span>
   <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
   
+  | <%= image_tag "ic_action_event_m.png" %><%= link_to 'Dashboard', '/pages/dashboard' %>
   | <%= image_tag "ic_action_paste_m.png" %><%= link_to 'Projects', projects_path %>
-  | <%= link_to 'Users', '/user/index' %>
-  | <%= link_to 'Tasks', tasks_path %>
+  | <%= image_tag "ic_action_group_m.png" %><%= link_to 'Users', '/user/index' %>
+  | <%= image_tag "ic_action_paste_m.png" %><%= link_to 'Tasks', tasks_path %>
+  | <%= image_tag "ic_action_about.png" %><%= link_to 'About', '/pages/about' %>
   
   
 <% else %>
@@ -45,6 +47,18 @@
 
 
 <%= yield %>
+
+
+
+
+
+<br>
+<br>
+<div class="footer">
+    <%= image_tag "ic_action_about.png" %><%= link_to 'About', '/pages/about' %>
+    <p>&copy; 2014 Hall of Time</p> 
+</div>
+
 
 </center>
 </body>
