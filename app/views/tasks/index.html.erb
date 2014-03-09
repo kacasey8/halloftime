@@ -6,8 +6,7 @@
       <th>Name</th>
       <th>User</th>
       <th>Project</th>
-      <th>Hours</th>
-      <th>Minutes</th>
+      <th>Duration (h:mm)</th>
       <th>Start</th>
       <th></th>
       <th></th>
@@ -20,11 +19,23 @@
         <td><%= link_to task.name, task %></td>
         <td><%= link_to task.user.email, task.user %></td>
         <td><%= link_to task.project.name, task.project %></td>
-        <td><%= task.hours %></td>
-        <td><%= task.minutes %></td>
-        <td><%= task.startTime ? task.startTime.to_formatted_s(:short): "none..."%></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+        <% if task.done? %>
+        
+            <td><%= task.hours.to_s + ":" + (task.minutes > 9 ? task.minutes.to_s : "0" + task.minutes.to_s ) %></td>
+            <td><%= task.startTime ? task.startTime.to_formatted_s(:short): "none..."%></td>
+            <td><%= link_to 'Edit', edit_task_path(task) %></td>
+            <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+        <% else %>
+        
+            <td>current</td>
+            <td><%= task.startTime ? task.startTime.to_formatted_s(:short): "none..."%></td>
+            <td> </td>
+            <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        
+        
       </tr>
     <% end %>
   </tbody>

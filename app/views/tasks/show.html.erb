@@ -14,13 +14,10 @@
 
     <tr>
       <th><strong>Hours:</strong></th>
-      <th><%= @task.hours %></th>
+      
+      <td><%= @task.hours.to_s + ":" + (@task.minutes > 9 ? @task.minutes.to_s : "0" + @task.minutes.to_s ) %></td>
     <tr>
 
-    <tr>
-      <th><strong>Minutes:</strong></th>
-      <th><%= @task.minutes %></th>
-    <tr>
 
 </table>
 

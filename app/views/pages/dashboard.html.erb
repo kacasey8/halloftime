@@ -184,6 +184,7 @@
             $("#nothingButtons").hide();
             
             if (currentTaskBool) {
+                $("#hourglass").show();
                 $("#somethingButtons").show();
             } else {
                 $("#nothingButtons").show();
@@ -239,10 +240,12 @@
             defaultMode();
         }
         
+        
+        $("#hourglass").hide();
         defaultMode();
         $("#msg").hide();
         $("#createNewTask").hide();
-        $("#hourglass").hide();
+        
         
         //setToNoCurrentTask();
         

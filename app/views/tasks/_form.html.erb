@@ -91,7 +91,7 @@
             this.maxTimeLabel.text(this.maxMinutes / 60 + " hr");
             if (this.obj.slider("value") > this.maxMinutes) {
                 this.obj.slider("value", this.maxMinutes);
-                timeSlider.currentLabel.text(Math.floor(this.obj.slider("value") / 60) + " hr " + this.obj.slider("value") % 60 + " min");
+                timeSlider.currentLabel.text(formatTime(this.obj.slider));
             }
             this.obj.slider({
                 change: function(event,ui) {},
@@ -114,6 +114,12 @@
       this.row = row;
       this.column = column;
   }
+  
+  function formatTime(num) {
+        
+        //return Math.floor(this.obj.slider("value") / 60) + " hr " + this.obj.slider("value") % 60 + " min"
+        return Math.floor(num / 60) + " hr " + num % 60 + " min";
+    }
 
   var timeSlider;
 
@@ -123,7 +129,7 @@
 
     $("#slider").slider({
       change: function(event,ui) {},
-      step: 15,
+      step: 5,
       min:timeSlider.minMinutes,
       max:timeSlider.maxMinutes,
       animate: "slow"
@@ -141,5 +147,9 @@
     $("#decrease").click(function() {
       timeSlider.update(timeSlider.maxMinutes -= 60);
     });
+    
+    
+    
+    
   });
 </script>

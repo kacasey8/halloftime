@@ -1,6 +1,8 @@
 <h1>Project: <%= @project.name %></h1>
 
-<p>Total hours spent on project: <%= @hours %> Minutes: <%= @minutes %></p>
+<p>Total hours spent on project: <b> <%= @hours.to_s + ":" + (@hours  > 9 ? @minutes.to_s : "0" + @minutes.to_s ) %> </b> (h:mm)</p>
+
+
 
 <table id="defaultTable">
   <h3>Tasks</h3>
