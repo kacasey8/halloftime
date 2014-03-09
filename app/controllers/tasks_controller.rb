@@ -4,6 +4,7 @@ class TasksController < ApplicationController
 
   # GET /tasks
   # GET /tasks.json
+  # GET /tasks.csv
   def index
     @tasks = Task.all
   end
