@@ -4,6 +4,8 @@ HallOfTime::Application.routes.draw do
   get "pages/about"
   get "user/index", as: :users
   match "user/approve_account/:id", to: "user#approve_account", via: :get, as: :users_approve
+  match "user/promote/:id", to: "user#promote", via: :get, as: :users_promote
+  match "user/destroy/:id", to: "user#destroy", via: :get, as: :users_destroy
   match "user/set_current_task", to: "user#set_current_task", via: :get, as: :users_current_task
   match "user/complete_current_task", to: "user#complete_current_task", via: :get, as: :users_complete_task
   match "user/:id", to: "user#show", via: :get, as: :user

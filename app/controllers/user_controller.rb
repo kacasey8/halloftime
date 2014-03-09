@@ -1,5 +1,12 @@
 class UserController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :self_or_admin!, only: [:set_current_task, :complete_current_task, :tasks, :set_tasks]
+  before_filter :authenticate_admin!, only: [:approve_account, :promote, :destroy]
+
+  def self_or_admin
+    params[:id] == current_user.id || authenticate_admin!
+  end
+
   def index
     @users = User.all
   end
@@ -30,11 +37,6 @@ class UserController < ApplicationController
     end
   end
 
-  def approve_account
-    User.find(params[:id]).update_attribute(:approved, true)
-    redirect_to :users
-  end
-
   def tasks
     render json: Task.where(user: User.find(params[:id])).map { |t| { id: t.id, title: t.name, start: t.startTime, :end => t.startTime + t.hours.hours + t.minutes.minutes }}
   end
@@ -52,5 +54,21 @@ class UserController < ApplicationController
         temp_task.save
       end
     end
+  end
+
+  def approve_account
+    User.find(params[:id]).update_attribute(:approved, true)
+    redirect_to :users, notice: user.email + ' was approved'
+  end
+
+  def promote
+    user = User.find(params[:id])
+    user.update_attribute(:role, 'admin')
+    redirect_to :users, notice: user.email + ' was promoted'
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    redirect_to :users, notice: 'Destroyed'
   end
 end

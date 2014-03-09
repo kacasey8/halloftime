@@ -5,6 +5,11 @@
     <tr>
       <th>Name</th>
       <th>Approved</th>
+      <th>Admin</th>
+      <% if current_user.role == 'admin' %>
+        <th>Promote</th>
+        <th>Remove</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -16,6 +21,11 @@
           <td><%= link_to "[Approve Account]", users_approve_path(user) %></td>
         <% else %>
           <td>Approved</td>
+        <% end %>
+        <td><%= user.role == 'admin' %></td>
+        <% if current_user.role == 'admin' %>
+          <td><%= link_to "[Promote This User]", users_promote_path(user) if user.role != 'admin' %></td>
+          <td><%= link_to "[Remove This User]", users_destroy_path(user) if current_user != user %></td>
         <% end %>
       </tr>
     <% end %>
