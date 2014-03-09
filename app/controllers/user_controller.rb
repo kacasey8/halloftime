@@ -6,6 +6,13 @@ class UserController < ApplicationController
     params[:id] == current_user.id || authenticate_admin!
   end
 
+  def export
+    @users = User.all.sort_by! {|u| u.id}
+    respond_to do |format|
+      format.csv { send_data @users.to_csv }
+    end
+  end
+
   def index
     @users = User.all
   end
@@ -46,7 +53,7 @@ class UserController < ApplicationController
       seconds = task.end - task.start
       hours = seconds / 3600
       minutes = seconds / 60
-      temp_task.update_attributes(name: task.title, startTime: task.start, hours: hours.floor, minutes: minutes.floor user: current_user)
+      temp_task.update_attributes(name: task.title, startTime: task.start, hours: hours.floor, minutes: minutes.floor, user: current_user)
       if !temp_task.valid?
         temp_project = Project.where(name: "UNKNOWN").first_or_create
         temp_task.update_attribute(:project_id, temp_project.id)
