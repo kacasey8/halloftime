@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 
   before_filter :self_or_admin!, only: [:edit, :update, :destroy]
 
-  def self_or_admin
+  def self_or_admin!
     @task.user == current_user || authenticate_admin!
   end
 

@@ -3,7 +3,7 @@ class UserController < ApplicationController
   before_filter :self_or_admin!, only: [:set_current_task, :complete_current_task, :tasks, :set_tasks]
   before_filter :authenticate_admin!, only: [:approve_account, :promote, :destroy]
 
-  def self_or_admin
+  def self_or_admin!
     params[:id] == current_user.id || authenticate_admin!
   end
 
