@@ -36,7 +36,17 @@
                 <%= current_user.currentTask ? "for project: " + current_user.currentTask.project.name : "" %>
                 
                 
-                </i></b> </span><span id="hourglass"><%= image_tag "hourglass1.gif" %></span>
+                </i></b> </span>
+                
+            <span id="hourglass"><%= image_tag "hourglass1.gif" %></span>
+            
+             <div id="currentStartTime"> <b><i>
+                
+                <%= current_user.currentTask ? " time started: " + current_user.currentTask.startTime.to_formatted_s(:short) : "" %>
+                
+                
+                </i></b> </div>
+            
         </p>
         
         
@@ -134,7 +144,9 @@
                 data: {'name' : $("#task_name").val(), 
                         'project_id' : $("#task_project_id").val() },
                 success: function(data) {
-                    $("#currentProjectField").html(" for project: <b><i>" + data.name +"</i></b>");
+                    $("#currentProjectField").html(" for project: <b><i>" + data.project +"</i></b>");
+                    $("#currentStartTime").html(" time started: <b><i>" + data.time +"</i></b>");
+                    console.log("Success from server!");
                 }
             });
             
@@ -152,7 +164,7 @@
                 type: "GET",
                 url: '/user/complete_current_task/',
                 success: function(data) {
-                    window.alert(data.id);
+                    //window.alert(data.id);
                 }
             });
             
@@ -193,6 +205,7 @@
             currentTaskProjName = "";
             $("#currentTaskField").html("<b><i>no current task</i></b>");
             $("#currentProjectField").html("");
+            $("#currentStartTime").html("");
             
             $("#hourglass").hide(100);
             
@@ -202,7 +215,7 @@
             $("#msg").html("<p>" + msg + "</p>");
             $("#msg").stop();
             $("#msg").show(100);
-            $("#msg").delay(5000).hide(500);
+            $("#msg").delay(8000).hide(100);
         }
 
         function updateTaskInfo(name, proj_id, proj_name, bool) {
@@ -213,6 +226,7 @@
                 currentTaskProjName = proj_name;
                 $("#currentTaskField").html("<b><i>" + name + "</i></b>");
                 $("#currentProjectField").html(" for project: <b><i>" + proj_name +"</i></b>");
+                //$("#currentStartTime").html(" time started: <b><i>" + proj_name +"</i></b>"); can't do this here
                 $("#hourglass").show(100);
                 //$("#hourglass").html('<%= image_tag "hourglass1.gif" %>');
             } else {
@@ -228,6 +242,7 @@
         defaultMode();
         $("#msg").hide();
         $("#createNewTask").hide();
+        $("#hourglass").hide();
         
         //setToNoCurrentTask();
         

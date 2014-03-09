@@ -22,7 +22,7 @@
         <td><%= link_to task.project.name, task.project %></td>
         <td><%= task.hours %></td>
         <td><%= task.minutes %></td>
-        <td><%= task.startTime %></td>
+        <td><%= task.startTime ? task.startTime.to_formatted_s(:short): "none..."%></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Task', new_task_path %>
+<%= link_to 'Create New Task', new_task_path %> (retroactively create a logged task)
