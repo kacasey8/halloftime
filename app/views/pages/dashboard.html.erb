@@ -31,12 +31,16 @@
                 <b><i>
                 <%= current_user.currentTask ? current_user.currentTask.name : "no current task" %>
                 </i></b> </span> 
-            <span id="currentProjectField"> <b><i>
+            <span id="currentProjectField"> 
                 
-                <%= current_user.currentTask ? "for project: " + current_user.currentTask.project.name : "" %>
+                <b><i>
+                    <%= current_user.currentTask ? " for project: " + current_user.currentTask.project.name : "" %>
+                <b><i>
+                        
+                <b><i>
+               
                 
-                
-                </i></b> </span>
+                 </span>
                 
             <span id="hourglass"><%= image_tag "hourglass1.gif" %></span>
             
