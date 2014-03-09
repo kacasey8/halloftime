@@ -590,8 +590,10 @@ table.fc-border-separate {
     
 </style>
 
+<%= link_to 'SUBMIT', set_tasks_for_user_path, :class => 'btn btn-primary' %>
 <div id='calendar'></div>
 <script>
+var hacks;
 $(document).ready(function(e) {
     var calendar = $('#calendar').fullCalendar({
         header:
@@ -617,7 +619,6 @@ $(document).ready(function(e) {
             success: function(reply) {
                 for (var x = 0; x < reply.length; x++) {
                     var hi = reply[x];
-                    console.log(hi);
                     calendar.fullCalendar('renderEvent',
                         {
                             title: hi.title,
@@ -660,7 +661,13 @@ $(document).ready(function(e) {
         }
     });
 
+    $('hax').click(function() {
+        alert('haax');
+    });
     
+    function hacks() {
+        console.log(calendar);
+    }
 
 });
 </script>
