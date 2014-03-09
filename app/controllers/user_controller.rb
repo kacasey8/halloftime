@@ -63,8 +63,9 @@ class UserController < ApplicationController
   def set_tasks
     task = Task.new
     seconds = Time.parse(params[:end]) - Time.parse(params[:start])
-    hours = seconds / 3600
     minutes = seconds / 60
+    hours = minutes / 60
+    minutes = minutes % 60
     task.update_attributes(name: params[:title], startTime: Time.parse(params[:start]), hours: hours.floor, minutes: minutes.floor, user: current_user, done: true)
     if !task.valid?
       temp_project = Project.where(name: "UNKNOWN").first_or_create
