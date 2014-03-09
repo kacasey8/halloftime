@@ -26,14 +26,14 @@
     <br>
     <div class="field">
         <%= f.label :minutes %><br>
-        <input id="task_minutes" name="minutes" value="0">
+        <input type="number" id="task_minutes" name="minutes" value="0">
         <span id="hourglass"></span>
     </div>
     <br>
     <div>
-        <div id="start" class="btn btn-primary">Start Task</div>
-        <div id="pause" class="btn btn-primary">Pause Task</div>
-        <button id="end" class="btn btn-primary">End Task</button>
+        <div id="start" class="btn btn-success">Start Task</div>
+        <div id="pause" class="btn btn-warning">Pause Task</div>
+        <button id="end" class="btn btn-danger">End Task</button>
     </div>
 <% end %>
 
@@ -43,7 +43,7 @@
         var recording = false;
         $("#pause").hide();
 
-        setInterval(function() {myTimer()}, 60000);
+        setInterval(function() {myTimer()}, 1000);
         $("#start").click(function(event){
             $("#hourglass").html('<%= image_tag "hourglass1.gif" %>');
             $("#start").hide();
@@ -65,7 +65,7 @@
         function myTimer() {
             if (recording == true) {
                 minutes++;
-                $("#task_minutes").val(minutes);
+                $("#task_minutes").val(Math.floor(minutes/60));
             }
         };
     });
