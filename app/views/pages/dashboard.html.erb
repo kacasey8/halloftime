@@ -80,39 +80,6 @@
     </div>
 </div>
 
-
-<!--<div id="currentTaskName"> @user %></div> 
-<div id="currentTasksProjectName"= @user %></div> 
-
--->
-
-
-<!--
-<h1>Quick Task Create</h1>
-<%= form_for(Task.new) do |f| %>
-    <div class="field">
-        <%= f.label :task_name %><br>
-        <%= f.text_field :name %>
-    </div>
-    <br>
-    <div class="field">
-        <%= f.label :project_id %><br>
-        <%= f.select :project_id, options_from_collection_for_select(Project.all, :id, :name) %>
-    </div>
-    <br>
-    <div class="field">
-        <%= f.label :minutes %><br>
-        <input type="number" id="task_minutes" name="minutes" value="0">
-        <span id="hourglass"></span>
-    </div>
-    <br>
-    <div>
-        <div id="start" class="btn btn-success">Start Task</div>
-        <div id="pause" class="btn btn-warning">Pause Task</div>
-        <button id="end" class="btn btn-danger">End Task</button>
-    </div>
-<% end %>
--->
 <script>
     $(function() {
         //var minutes = 0;
@@ -146,10 +113,6 @@
             pname = $("#task_project_id").val();
             updateTaskInfoAndSendToServer(name, id, pname, true);
 
-            /// send info of fields to server
-            ///
-            ///
-            ///
             $.ajax({
                 type: "GET",
                 url: '/user/set_current_task/',
@@ -159,12 +122,6 @@
                     $("#currentProjectField").html(" for project: <b><i>" + data.name +"</i></b>");
                 }
             });
-            
-            //$("#currentTaskField").replaceWith($("#task_name").val());
-            
-            
-            /////
-            
             
 
             defaultMode();
@@ -194,8 +151,7 @@
             } else {
                 $("#nothingButtons").show();
             }
-            
-            
+               
         }
         
         function createTaskMode() {
@@ -211,22 +167,9 @@
             $("#currentTaskField").html("<b><i>no current task</i></b>");
             $("#currentProjectField").html("");
             
-            
-            
-            
         }
         
         function updateTaskInfoAndSendToServer(name, proj_id, proj_name, bool) {
-            ///// TODO, retrieve user's data from server!
-            /// send info of fields to server
-            ///
-            ///
-            ///
-            
-            //$("#currentTaskField").html('' + $("#task_name").val());
-            
-            
-            /////
             
             currentTaskBool = bool;
             if (bool) {
@@ -244,21 +187,7 @@
             defaultMode();
         }
         
-        
-        // init functions:
         defaultMode();
-        
-        //setToNoCurrentTask();
-        
-        //updateTaskInfoAndSendToServer();
-        
-
-        /*function myTimer() {
-            if (recording == true) {
-                minutes++;
-                $("#task_minutes").val(Math.floor(minutes/60));
-            }
-        };*/
     });
 </script>
 
