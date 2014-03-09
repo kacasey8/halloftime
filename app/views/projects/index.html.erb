@@ -1,6 +1,6 @@
-<h1>Listing projects</h1>
+<h1><%= image_tag "ic_action_paste_h.png" %> Listing projects</h1>
 
-<table>
+<table id="projectIndexTable">
   <thead>
     <tr>
       <th>Name</th>
@@ -13,7 +13,7 @@
   <tbody>
     <% @projects.each do |project| %>
       <tr>
-        <td><%= project.name %></td>
+        <td id="tdName"><b><%= project.name %></b></td>
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -21,6 +21,10 @@
     <% end %>
   </tbody>
 </table>
+
+
+
+
 
 <br>
 

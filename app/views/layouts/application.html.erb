@@ -7,17 +7,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <center>
 <% if user_signed_in? %>
+    
+        
   <span id="userbar" class="userbar">Welcome, <%= current_user.email %></span>
   <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
+  
+  
 <% else %>
+
+
   <span class="userbar"><%= link_to "Log In", new_user_session_path %> | <%= link_to "Register", new_user_registration_path %></span>
+  
+
 <% end %>
 
 
-| <%= link_to 'Projects', projects_path %>
+| <%= image_tag "ic_action_paste_m.png" %><%= link_to 'Projects', projects_path %>
 | <%= link_to 'Users', '/user/index' %>
 | <%= link_to 'Tasks', tasks_path %>
+
 
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
@@ -28,7 +38,11 @@
   <% end %>
 <% end %>
 
+
+
+
 <%= yield %>
 
+</center>
 </body>
 </html>
