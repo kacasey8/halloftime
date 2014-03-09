@@ -2,6 +2,7 @@ HallOfTime::Application.routes.draw do
 
   get "user/index"
   resources :projects
+  root to: "users/sign_in"
 
   resources :tasks
 
