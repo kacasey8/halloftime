@@ -20,9 +20,13 @@
     <%= f.select :project_id, options_from_collection_for_select(@projects, :id, :name) %>
   </div>
 
-  <div id="minutesSlider" class="well">
+  <br>
+
+  <div class="field">
+    <%= f.label :hours %>
+  <div id="minutesSlider">
   <input id="taskMinutes" type="hidden" name="minutes">
-  <div class="well">
+  <div>
 
 
   <span id="currentLabel">slider value</span>
@@ -38,10 +42,14 @@
   </section>
   </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
   </div>
+  <br>
+  <div class="actions">
+    <%= f.submit 'Create', :class => 'btn btn-primary' %>
+  </div>
+  <br>
 <% end %>
+
 <script>
   function Slider(object, maxLabel, minLabel, currentLabel, decrease, increase, input) {
     this.obj = object;
