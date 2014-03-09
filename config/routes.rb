@@ -1,6 +1,7 @@
 HallOfTime::Application.routes.draw do
 
-  get "user/index"
+  get "user/index", as: :users
+  match "user/:id", to: "user#show", via: :get, as: :user
   resources :projects
   root to: "user#index"
 

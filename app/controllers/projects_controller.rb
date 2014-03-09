@@ -10,6 +10,11 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @project = Project.includes(tasks: :user).find(params[:id])
+    @hours = @project.tasks.sum(:hours)
+    @minutes = @project.tasks.sum(:minutes)
+    @hours += @minutes / 60
+    @minutes = @minutes % 60
   end
 
   # GET /projects/new

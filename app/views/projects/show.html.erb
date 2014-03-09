@@ -1,7 +1,26 @@
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
+<h1>Project: <%= @project.name %></h1>
+
+<p>Hours: <%= @hours %> Minutes: <%= @minutes %></p>
+
+<table>
+  <h3>Tasks</h3>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>User</th>
+      <th>Hours</th>
+      <th>Minutes</th>
+    </tr>
+  </thead>
+  <% @project.tasks.each do |task| %>
+    <tr>
+      <td><%= link_to task.name, task %></td>
+      <td><%= task.user.email %></td>
+      <td><%= task.hours %></td>
+      <td><%= task.minutes %></td>
+    </tr>
+  <% end %>
+</table>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
