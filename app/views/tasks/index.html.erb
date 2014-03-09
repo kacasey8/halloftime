@@ -32,7 +32,7 @@
             <td>current</td>
             <td><%= task.startTime ? task.startTime.to_formatted_s(:short): "none..."%></td>
             <td> </td>
-            <td> </td>
+            <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
         
         
