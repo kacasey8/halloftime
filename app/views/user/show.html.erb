@@ -5,6 +5,10 @@
   <%= @user.email %>
 </p>
 
+<% if @user == current_user %>
+  <p><%= link_to "Edit your account", edit_user_registration_path %></p>
+<% end %>
+
 <p>Hours: <%= @hours %> Minutes: <%= @minutes %></p>
 
 <p><%= link_to 'Calendar', tasks_for_user_path(@user) %></p>
