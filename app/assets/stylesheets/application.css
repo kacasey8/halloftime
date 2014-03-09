@@ -18,6 +18,7 @@
 
 
 /*
+/*
  * Bootstrap CSS stuff
  * 
  * */ 
@@ -110,8 +111,31 @@ body {
 
 
 /*
+ * 
+ * 
+ * 
+ * 
+ * 
  *  Custom CSS stuff:
  * */
+ 
+ 
+.createNewTask {
+    border-radius: 6px;
+    padding: 6px 6px;
+    background-color: #cccccc;
+} 
+ 
+ 
+.dashboardMessages {
+    
+    border-radius: 6px;
+    padding: 6px 6px;
+    background-color: #cceeee;
+} 
+ 
+ 
+ 
 
 .subtitle{
   /*padding: 14px 24px;*/

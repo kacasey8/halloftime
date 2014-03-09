@@ -3,9 +3,17 @@
 <h1>   <%= image_tag "ic_action_event_h.png" %> Your Dashboard </h1>
 
 <br>
+    
+    
+<div id="msg" class="dashboardMessages"></div>
+
+
+<br>
 
 <div class="container">
     <div class="jumbotron">
+        
+        
 
     
         Here you can manage which task you are currently working on.  You can only work on 1 task at a time, 
@@ -25,10 +33,10 @@
                 </i></b> </span> 
             <span id="currentProjectField"> <b><i>
                 
-                for project: <%= current_user.currentTask ? current_user.currentTask.project.name : "no current task" %>
+                <%= current_user.currentTask ? "for project: " + current_user.currentTask.project.name : "" %>
                 
                 
-                </i></b> </span><span id="hourglass"></span>
+                </i></b> </span><span id="hourglass"><%= image_tag "hourglass1.gif" %></span>
         </p>
         
         
@@ -43,7 +51,7 @@
         </div>            
             
 
-        <div id="createNewTask">
+        <div id="createNewTask" class="createNewTask">
             <h1>Create new task:</h1>
             <br>
             
@@ -88,7 +96,9 @@
         //$("#hourglass").html('<%= image_tag "hourglass1.gif" %>');
         
         
-        currentTaskBool = false; // TODO parse from server
+        currentTaskBool = <%= current_user.currentTask ? true : false %> 
+        currentTaskName = "";
+        currentTaskProjName = "";
         
         $( document ).ready(function() {
             $("#createNewTask").hide();
@@ -111,6 +121,11 @@
             name = $("#task_name").val();
             id = $("#task_project_id").val();
             pname = $("#task_project_id").val();
+            if (currentTaskBool) {
+                showMessage("<b><i> " + currentTaskName + "</i></b> has ended.  Now starting <b><i>" + name + "</i></b>.  It will automatically log how many hours when you end the task.");
+            } else {
+                showMessage("<b><i> " + name + "</i></b> has been started!  It will automatically log how many hours when you end the task.");
+            }
             updateTaskInfo(name, id, pname, true);
 
             $.ajax({
@@ -130,6 +145,8 @@
         
         $("#cancelCurrentTask").click(function(event){
             event.preventDefault();
+            
+            showMessage(currentTaskName + " has been ended.  You can view details or edit it under Tasks.");
             updateTaskInfo("", "", "", false);
             $.ajax({
                 type: "GET",
@@ -138,7 +155,7 @@
                     window.alert(data.id);
                 }
             });
-            //$("#createNewTask").hide();
+            
 
         });
         
@@ -149,10 +166,11 @@
         });
         
         function defaultMode() {
-            $("#createNewTask").hide();
+            $("#createNewTask").hide(100);
             $("#openNewTaskMenu").show();
             $("#somethingButtons").hide();
             $("#nothingButtons").hide();
+            
             if (currentTaskBool) {
                 $("#somethingButtons").show();
             } else {
@@ -162,7 +180,7 @@
         }
         
         function createTaskMode() {
-            $("#createNewTask").show();
+            $("#createNewTask").show(100);
             $("#openNewTaskMenu").hide();
             $("#somethingButtons").hide();
             $("#nothingButtons").hide();
@@ -171,20 +189,31 @@
         function setToNoCurrentTask() {
             currentTaskBool = false;
             
+            currentTaskName = "";
+            currentTaskProjName = "";
             $("#currentTaskField").html("<b><i>no current task</i></b>");
             $("#currentProjectField").html("");
             
+        }
+        
+        function showMessage(msg) {
+            $("#msg").html("<p>" + msg + "</p>");
+            $("#msg").show(100);
+            $("#msg").delay(5000).hide(500);
         }
 
         function updateTaskInfo(name, proj_id, proj_name, bool) {
             
             currentTaskBool = bool;
             if (bool) {
-                
+                currentTaskName = name;
+                currentTaskProjName = proj_name;
                 $("#currentTaskField").html("<b><i>" + name + "</i></b>");
                 $("#currentProjectField").html(" for project: <b><i>" + proj_name +"</i></b>");
-                $("#hourglass").html('<%= image_tag "hourglass1.gif" %>');
+                $("#hourglass").show(100);
+                //$("#hourglass").html('<%= image_tag "hourglass1.gif" %>');
             } else {
+                $("#hourglass").hide(100);
                 setToNoCurrentTask();
             }
             
@@ -195,6 +224,21 @@
         }
         
         defaultMode();
+        $("#msg").hide();
+        $("#createNewTask").hide();
+        
+        //setToNoCurrentTask();
+        
+        //updateTaskInfoAndSendToServer();
+        
+
+        /*function myTimer() {
+            if (recording == true) {
+                minutes++;
+                $("#task_minutes").val(Math.floor(minutes/60));
+            }
+        };*/
+
     });
 </script>
 
