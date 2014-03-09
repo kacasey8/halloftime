@@ -25,4 +25,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :tasks, dependent: :destroy
+
+  def currentTask
+    Task.find(self.currentTask_id)
+  end
 end

@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :set_projects, only: [:new, :create, :edit]
+  before_filter :authenticate_user!
 
   # GET /tasks
   # GET /tasks.json
