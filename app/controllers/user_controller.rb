@@ -13,8 +13,20 @@ class UserController < ApplicationController
   end
 
   def set_current_task
-    temp_task = Task.create(name: params[:name], user: current_user, project_id: params[:project_id], hours: 0, minutes: 0)
+    temp_task = Task.create(name: params[:name], user: current_user, project_id: params[:project_id], hours: 0, minutes: 0, startTime: Time.now)
     current_user.update_attribute(:currentTask_id, temp_task.id)
     render json: temp_task.project
+  end
+
+  def complete_current_task
+    task = current_user.currentTask
+    if task
+      seconds = Time.now - task.startTime
+      hours = seconds / 3600
+      minutes = seconds / 60
+      task.update_attributes(done: true, hours: hours.floor, minutes: minutes.floor)
+      current_user.update_attribute(:currentTask_id, nil)
+      render json: task
+    end
   end
 end

@@ -31,6 +31,7 @@ class TasksController < ApplicationController
     @task.user = current_user
     @task.hours = params[:minutes].to_i / 60
     @task.minutes = params[:minutes].to_i % 60
+    @task.startTime = Time.now - @task.hours.hours - @task.minutes.minutes
 
     respond_to do |format|
       if @task.save
