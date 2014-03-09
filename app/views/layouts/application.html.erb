@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <%#= favicon_link_tag %>
+  <%= favicon_link_tag %>
 </head>
 <body>
     <center>
@@ -13,7 +13,7 @@
     
   <div class="actionbar">
       
-  <span id="userbar" class="userbar">Welcome, <%= current_user.email %></span>
+  <span id="userbar" class="userbar">Welcome, <%= link_to current_user.email, current_user %></span>
       <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
       
       | <%= image_tag "ic_action_event_m.png" %><%= link_to 'Dashboard', '/pages/dashboard' %>
