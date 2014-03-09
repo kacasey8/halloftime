@@ -13,14 +13,17 @@
     
   <div class="actionbar">
       
-  <span id="userbar" class="userbar">Welcome, <%= current_user.email %></span>
-      <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
+  <span id="userbar" class="userbar">Welcome, <%= link_to current_user.email, current_user %></span> |
+      <%= link_to "Change your password", edit_user_registration_path %> |
+      <%= link_to 'Logout', destroy_user_session_path, :method => :delete %> |
       
-      | <%= image_tag "ic_action_event_m.png" %><%= link_to 'Dashboard', '/pages/dashboard' %>
-      | <%= image_tag "ic_action_paste_m.png" %><%= link_to 'Projects', projects_path %>
-      | <%= image_tag "ic_action_group_m.png" %><%= link_to 'Users', '/user/index' %>
-      | <%= image_tag "ic_action_time_m.png" %><%= link_to 'Tasks', tasks_path %>
-      | <%= image_tag "ic_action_about_m.png" %><%= link_to 'About', '/pages/about' %>
+
+       <%= image_tag "ic_action_event_m.png" %><%= link_to 'Dashboard', '/pages/dashboard' %> |
+       <%= image_tag "ic_action_paste_m.png" %><%= link_to 'Projects', projects_path %> |
+       <%= image_tag "ic_action_group_m.png" %><%= link_to 'Users', '/user/index' %> |
+       <%= image_tag "ic_action_time_m.png" %><%= link_to 'Tasks', tasks_path %> |
+       <%= image_tag "ic_action_about_m.png" %><%= link_to 'About', '/pages/about' %>
+
       
       </div>
       <!-- These two divs are for the jumbotron to not activate here -->
@@ -34,8 +37,8 @@
     
     
     <div class="actionbar">
-       <span class="userbar"><%= link_to "Sign In", new_user_session_path %> 
-       | <%= link_to "Create an Account", new_user_registration_path %></span>
+       <span class="userbar"><%= link_to "Sign In", new_user_session_path %> |
+       <%= link_to "Create an Account", new_user_registration_path %></span>
     </div>
     
     <div class="logo">
@@ -51,10 +54,6 @@
 <% end %>
 
 
-
-
-
-
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
     <div class="alert alert-<%= name.to_s == 'notice' ? "success" : "danger" %>">
@@ -64,14 +63,11 @@
   <% end %>
 <% end %>
 
-
-
-
 <%= yield %>
 
 
 </div>
-      </div>
+</div>
 
 
 <br>
