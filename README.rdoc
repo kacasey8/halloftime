@@ -1,27 +1,15 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Hall of Time
 
-Things you may want to cover:
+* Server setup
 
-* Ruby version
+?
 
-* System dependencies
+* Pebble watch
+ - Run <code>pebble build</code> in the pebble_project_viewer directory to build the watchface. 
+ - The pebble app requires a bluetooth connection to a phone with internet to access the list of projects. 
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 
 
 Please feel free to use a different markup language if you do not plan to run
