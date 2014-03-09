@@ -11,7 +11,7 @@ HallOfTime::Application.routes.draw do
   match "user/:id", to: "user#show", via: :get, as: :user
   match "user/calendar/test/:id", to: "user#tasks", via: :get, as: :tasks_for_user
   match "user/calendar/:id", to: "user#calendar", via: :get, as: :calendar_for_user
-  match "user/:id", to: "user#set_tasks", via: :post, as: :set_tasks_for_user
+  match "user/need_fake_name/:id", to: "user#set_tasks", via: :get, as: :set_tasks_for_user
   resources :projects
   root to: "pages#dashboard"
 

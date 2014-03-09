@@ -590,7 +590,7 @@ table.fc-border-separate {
     
 </style>
 
-<%= link_to 'SUBMIT', set_tasks_for_user_path, :class => 'btn btn-primary' %>
+<%= link_to 'SUBMIT EVENTS', set_tasks_for_user_path, :class => 'btn btn-primary' %>
 <div id='calendar'></div>
 <script>
 var hacks;
@@ -647,6 +647,17 @@ $(document).ready(function(e) {
                     },
                     true
                 );
+                $.ajax({
+                    type: "GET",
+                    url: '<%= set_tasks_for_user_path %>',
+                    data: {'id' : 56, 
+                           'title' : task,
+                           'start' : start,
+                           'end' : end },
+                    success: function(data) {
+                        console.log("Success from server!");
+                    }
+                });
             }
             calendar.fullCalendar('unselect');
         },

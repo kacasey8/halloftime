@@ -61,18 +61,18 @@ class UserController < ApplicationController
   end
 
   def set_tasks
-    data.each do |task|
-      temp_task = Task.where(id: task.id).first_or_create
-      seconds = task.end - task.start
-      hours = seconds / 3600
-      minutes = seconds / 60
-      temp_task.update_attributes(name: task.title, startTime: task.start, hours: hours.floor, minutes: minutes.floor, user: current_user)
-      if !temp_task.valid?
-        temp_project = Project.where(name: "UNKNOWN").first_or_create
-        temp_task.update_attribute(:project_id, temp_project.id)
-        temp_task.save
-      end
+    task = Task.new
+    seconds = Time.parse(params[:end]) - Time.parse(params[:start])
+    hours = seconds / 3600
+    minutes = seconds / 60
+    task.update_attributes(name: params[:title], startTime: Time.parse(params[:start]), hours: hours.floor, minutes: minutes.floor, user: current_user, done: true)
+    if !task.valid?
+      temp_project = Project.where(name: "UNKNOWN").first_or_create
+      task.update_attribute(:project_id, temp_project.id)
+      task.save
     end
+
+    render :nothing # f u too
   end
 
   def approve_account
