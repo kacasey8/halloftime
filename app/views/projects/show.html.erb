@@ -10,16 +10,14 @@
       <th>User</th>
       <th>Hours</th>
       <th>Minutes</th>
-      <th></th>
     </tr>
   </thead>
   <% @project.tasks.each do |task| %>
     <tr>
-      <td><%= task.name %></td>
+      <td><%= link_to task.name, task %></td>
       <td><%= task.user.email %></td>
       <td><%= task.hours %></td>
       <td><%= task.minutes %></td>
-      <td><%= link_to 'Task', task %></td>
     </tr>
   <% end %>
 </table>

@@ -1,0 +1,28 @@
+<h1>User</h1>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<table>
+  <h3>Tasks</h3>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Project</th>
+      <th>Hours</th>
+      <th>Minutes</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <% @user.tasks.each do |task| %>
+    <tr>
+      <td><%= link_to task.name, task %></td>
+      <td><%= task.project.name %></td>
+      <td><%= task.hours %></td>
+      <td><%= task.minutes %></td>
+    </tr>
+  <% end %>
+</table>

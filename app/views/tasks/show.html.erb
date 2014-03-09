@@ -7,12 +7,12 @@
 
 <p>
   <strong>User:</strong>
-  <%= @task.user.email %>
+  <%= link_to @task.user.email, @task.user %>
 </p>
 
 <p>
   <strong>Project:</strong>
-  <%= @task.project.name %>
+  <%= link_to @task.project.name, @task.project %>
 </p>
 
 <p>
