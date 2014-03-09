@@ -611,7 +611,7 @@ $(document).ready(function(e) {
         selectHelper: true,
         editable: true,
         events: {
-            url: 'http://localhost:3000/user/calendar/test/1',
+            url: '<%= tasks_for_user_path %>',
             type: 'GET',
             error: function() {
                 alert('there was an error while fetching events!');
