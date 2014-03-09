@@ -13,12 +13,61 @@
 </div>
 
 <h1>Quick Task Create</h1>
-<div class="field">
-	<%= f.label :name %><br>
-	<%= f.text_field :name %>
-</div>
-<div>
-	<button class="btn btn-primary">Start Task</button>
-	<button class="btn btn-primary">Halt Task</button>
-	<button class="btn btn-primary">End Task</button>
-</div>
+<%= form_for(Task.new) do |f| %>
+    <div class="field">
+        <%= f.label :task_name %><br>
+        <%= f.text_field :name %>
+    </div>
+    <br>
+    <div class="field">
+        <%= f.label :project_id %><br>
+        <%= f.select :project_id, options_from_collection_for_select(Project.all, :id, :name) %>
+    </div>
+    <br>
+    <div class="field">
+        <%= f.label :minutes %><br>
+        <input id="task_minutes" name="minutes" value="0">
+        <span id="hourglass"></span>
+    </div>
+    <br>
+    <div>
+        <div id="start" class="btn btn-primary">Start Task</div>
+        <div id="pause" class="btn btn-primary">Pause Task</div>
+        <button id="end" class="btn btn-primary">End Task</button>
+    </div>
+<% end %>
+
+<script>
+    $(function() {
+        var minutes = 0;
+        var recording = false;
+        $("#pause").hide();
+
+        setInterval(function() {myTimer()}, 60000);
+        $("#start").click(function(event){
+            $("#hourglass").html('<%= image_tag "hourglass1.gif" %>');
+            $("#start").hide();
+            $("#pause").show();
+            event.preventDefault();
+            recording = true;
+            
+        });
+
+        $("#pause").click(function(event){
+            event.preventDefault();
+            $("#pause").hide();
+            $("#start").show();
+            $("#hourglass").html('');
+            recording = false;
+
+        });
+
+        function myTimer() {
+            if (recording == true) {
+                minutes++;
+                $("#task_minutes").val(minutes);
+            }
+        };
+    });
+</script>
+
