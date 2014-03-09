@@ -31,7 +31,6 @@ class TasksController < ApplicationController
     @task.user = current_user
     @task.hours = params[:minutes].to_i / 60
     @task.minutes = params[:minutes].to_i % 60
-    @task.startTime = Time.now - @task.hours.hours - @task.minutes.minutes
 
     respond_to do |format|
       if @task.save
@@ -82,6 +81,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:name, :user_id, :project_id, :hours, :minutes, :done)
+      params.require(:task).permit(:name, :user_id, :project_id, :hours, :minutes, :done, :startTime)
     end
 end
