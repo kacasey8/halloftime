@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html>
+    
+<%= stylesheet_link_tag    "vendor",      :media => "all" %>
+<%= stylesheet_link_tag    "application", :media => "all" %>
+<%= javascript_include_tag "vendor" %>
+<%= javascript_include_tag "application" %>
+    
+<div class="everything">
+    
 <head>
   <title>HallOfTime</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
@@ -13,6 +21,8 @@
     
   <div class="actionbar">
       
+  <center>
+      
   <span id="userbar" class="userbar">Welcome, <%= link_to current_user.email, current_user %></span> |
       <%= link_to "Change your password", edit_user_registration_path %> |
       <%= link_to 'Logout', destroy_user_session_path, :method => :delete %> |
@@ -24,9 +34,11 @@
        <%= image_tag "ic_action_time_m.png" %><%= link_to 'Tasks', tasks_path %> |
        <%= image_tag "ic_action_about_m.png" %><%= link_to 'About', '/pages/about' %>
 
-      
+       </center>
       </div>
+      
       <!-- These two divs are for the jumbotron to not activate here -->
+     <div class="everythingNotHeader"> 
     <div>
     <div>
   
@@ -37,19 +49,28 @@
     
     
     <div class="actionbar">
+        
        <span class="userbar"><%= link_to "Sign In", new_user_session_path %> |
-       <%= link_to "Create an Account", new_user_registration_path %></span>
+       <%= link_to "Create an Account", new_user_registration_path %></span> |
+       <%= image_tag "ic_action_about_m.png" %><%= link_to 'About', '/pages/about' %>
+       </center>
     </div>
     
-    <div class="logo">
-        <h1> <%= image_tag "IconBlue.png" %> Hall of Time</h1>
-        <div class="subtitle">Timesheet management made simple.</div>
-        <br>
-    </div>
-       
-       
-    <div class="container">
-     <div class="jumbotron">
+    <center>
+    <div class="everythingNotHeader"> 
+        <div class="logo">
+            <h1> <%= image_tag "IconBlue.png" %> Hall of Time</h1>
+            <div class="subtitle">Timesheet management made simple.</div>
+            <br>
+        </div>
+        
+          
+       <div>
+    <div>
+    
+    
+         
+         
 
 <% end %>
 
@@ -73,12 +94,42 @@
 <br>
 <br>
 <div class="footer">
+    <center>
     <%= image_tag "ic_action_about_m.png" %><%= link_to 'About', '/pages/about' %>
     <p>&copy; 2014 Hall of Time</p> 
     <br>
     
     <%= image_tag "IconBlue.png" %>
 </div>
+
+
+</div>
+</div>
+
+
+
+
+
+<script>
+        
+    //http://stackoverflow.com/questions/8620726/always-on-top-div-within-area
+
+    /*$(window).load(function(){
+    $(window).scroll(function () { 
+        console.log($(".everything").position());
+        if(($(".everything").position().top - $(window).scrollTop()) <= 0)
+           {
+               $("#actionbar").addClass("fixit");
+           }
+           else
+           {
+               $("#actionbar").removeClass("fixit");
+           }
+
+        });
+    });*/
+
+</script>
 
 
 </center>

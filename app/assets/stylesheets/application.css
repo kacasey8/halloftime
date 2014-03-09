@@ -25,7 +25,7 @@
 
 /* Space out content a bit */
 body {
-  padding-top: 5px;
+  padding-top: 0px;
   padding-bottom: 20px;
 }
 
@@ -53,7 +53,7 @@ body {
 .footer {
   padding-top: 19px;
   color: #777;
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid #cccccc;
 }
 
 
@@ -120,6 +120,15 @@ body {
  * */
  
  
+ .everything {
+ 
+ }
+ 
+ .everythingNotHeader {
+  padding-top: 50px;
+  z-index:-1;
+}
+ 
 .createNewTask {
     border-radius: 6px;
     padding: 6px 6px;
@@ -144,9 +153,24 @@ body {
 
 
 .actionbar {
-  padding-bottom: 5px;
-  border-bottom: 1px solid #e5e5e5;
+  position: fixed;
+  z-index:9999999;
+
+  text-align: center;
+  width: 100%;
+
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #cccccc;
+  background-color: #eeeeee;
+  
 }
+
+.fixit{
+    position:fixed;
+    top: 0px;
+}
+
 .logo {
   /*border-bottom: 1px solid #e5e5e5;*/
 }
