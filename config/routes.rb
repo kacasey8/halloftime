@@ -9,8 +9,9 @@ HallOfTime::Application.routes.draw do
   match "user/set_current_task", to: "user#set_current_task", via: :get, as: :users_current_task
   match "user/complete_current_task", to: "user#complete_current_task", via: :get, as: :users_complete_task
   match "user/:id", to: "user#show", via: :get, as: :user
-  match "user_with_tasks/:id", to: "user#tasks", via: :get, as: :tasks_for_user
-  match "user_with_tasks/:id", to: "user#set_tasks", via: :post, as: :set_tasks_for_user
+  match "user/calendar/test/:id", to: "user#tasks", via: :get, as: :tasks_for_user
+  match "user/calendar/:id", to: "user#calendar", via: :get, as: :calendar_for_user
+  match "user/:id", to: "user#set_tasks", via: :post, as: :set_tasks_for_user
   resources :projects
   root to: "pages#dashboard"
 
