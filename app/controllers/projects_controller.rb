@@ -6,6 +6,10 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+    respond_to do |format|
+      format.json { render json: @projects.map { |project| { minutes: project.tasks.sum(:hours)*60 + project.tasks.sum(:minutes), id: project.id, name: project.name }}
+      }
+    end
   end
 
   # GET /projects/1
