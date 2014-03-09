@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140309021638) do
+ActiveRecord::Schema.define(version: 20140309085820) do
 
   create_table "projects", force: true do |t|
     t.string   "name"
@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(version: 20140309021638) do
     t.integer  "minutes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "startTime"
+    t.datetime "endTime"
+    t.boolean  "done"
   end
 
   create_table "users", force: true do |t|
@@ -42,6 +45,7 @@ ActiveRecord::Schema.define(version: 20140309021638) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "currentTask_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
