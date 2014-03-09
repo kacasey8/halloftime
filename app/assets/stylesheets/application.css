@@ -127,6 +127,13 @@ body {
   /*border-bottom: 1px solid #e5e5e5;*/
 }
 
+.currentTaskField {
+    border-bottom: 1px solid #234567;
+
+}
+
+
+
 #defaultTable
 {
     font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -153,3 +160,23 @@ body {
     color:#222222;
     background-color:#EAF2D3;
 }
+
+#invisTable
+{
+    font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+    /* width:100%; */
+    border-collapse:collapse;
+}
+#invisTable td, #invisTable th 
+{
+    font-size:1em;
+    padding:3px 7px 2px 7px;
+}
+#invisTable th 
+{
+    font-size:1.1em;
+    text-align:left;
+    padding-top:5px;
+    padding-bottom:4px;
+}
+

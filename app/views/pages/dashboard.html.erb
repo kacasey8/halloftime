@@ -7,19 +7,30 @@
 <div class="container">
     <div class="jumbotron">
 
+    
+        Here you can manage which task you are currently working on.  You can only work on 1 task at a time, 
+        and it will continue logging in hours until you end the task, which will log it into the Previous Tasks
+        database for you.
+
+        <br>
+        <br>
+        <br>
+        <br>
+        
+        
         <p>
-            You can  blah blah blah.......
+            Your current task is: <span id="currentTaskField" class="currentTaskField">___ </span> 
+            <span id="currentProjectField"> for project: ___ </span><span id="hourglass"></span>
         </p>
         
-        Your current task is: <div class="currentTaskField">___ </div> 
-        <div class="currentProjectField"> for project: ___ </div>
         
-        <div id="nothingStuff">
-            <button id="openNewTaskMenu" class="btn new task">Start a new task</button>
+        <br>
+        <div id="nothingButtons">
+            <button id="openNewTaskMenu1" class="btn btn-success">Start a new task</button>
         </div>     
                
         <div id="somethingButtons">
-            <button id="openNewTaskMenu" class="btn new task">Start a new task</button>
+            <button id="openNewTaskMenu2" class="btn btn-success">Start a new task</button>
             <button id="cancelCurrentTask" class="btn btn-danger">End current task</button>
         </div>            
             
@@ -61,8 +72,8 @@
     </div>
 </div>
 
-<!--<div id="currentTaskName"><%= @user. %></div> 
-<div id="currentTasksProjectName"><%= @user. %></div> 
+<!--<div id="currentTaskName"> @user. %></div> 
+<div id="currentTasksProjectName"= @user. %></div> 
 
 -->
 
@@ -98,7 +109,7 @@
         //var minutes = 0;
         //var recording = false;
         
-        
+        //$("#hourglass").html('<%= image_tag "hourglass1.gif" %>');
         
         
         currentTaskBool = false; // TODO parse from server
@@ -108,34 +119,29 @@
         });
 
         //setInterval(function() {myTimer()}, 1000);
-        $("#openNewTaskMenu").click(function(event){
-            //$("#hourglass").html('<%= image_tag "hourglass1.gif" %>');
-            
+        $("#openNewTaskMenu1").click(function(event){
             createTaskMode();
             event.preventDefault();
-
+        });
+        $("#openNewTaskMenu2").click(function(event){
+            createTaskMode();
+            event.preventDefault();
         });
 
         $("#start").click(function(event){
             event.preventDefault();
             
-            /// send info of fields to server
-            ///
-            ///
-            ///
-            
-            $("#currentTaskField").replaceWith($("#task_name").val());
-            
-            
-            /////
-            
-            
+            name = $("#task_name").val();
+            id = $("#task_project_id").val();
+            pname = $("#task_project_id").val();
+            updateTaskInfoAndSendToServer(name, id, pname, true);
             defaultMode();
 
         });
         
         $("#cancelCurrentTask").click(function(event){
             event.preventDefault();
+            updateTaskInfoAndSendToServer("", "", "", false);
             //$("#createNewTask").hide();
 
         });
@@ -149,11 +155,11 @@
         function defaultMode() {
             $("#createNewTask").hide();
             $("#openNewTaskMenu").show();
+            $("#somethingButtons").hide();
+            $("#nothingButtons").hide();
             if (currentTaskBool) {
                 $("#somethingButtons").show();
-                $("#nothingButtons").hide();
             } else {
-                $("#somethingButtons").hide();
                 $("#nothingButtons").show();
             }
             
@@ -170,20 +176,39 @@
         function setToNoCurrentTask() {
             currentTaskBool = false;
             
-            $("#currentTaskField").replaceWith("<b><i>no current task</i></b>");
-            $("#currentProjectField").replaceWith("");
+            $("#currentTaskField").html("<b><i>no current task</i></b>");
+            $("#currentProjectField").html("");
             
             
             
             
         }
         
-        function updateTaskInfoFromServer() {
+        function updateTaskInfoAndSendToServer(name, proj_id, proj_name, bool) {
             ///// TODO, retrieve user's data from server!
-            currentTaskBool = true;
+            /// send info of fields to server
+            ///
+            ///
+            ///
             
-            $("#currentTaskField").replaceWith("<b><i>Coding!</i></b>");
-            $("#currentProjectField").replaceWith("project hackathon");
+            //$("#currentTaskField").html('' + $("#task_name").val());
+            
+            
+            /////
+            
+            currentTaskBool = bool;
+            if (bool) {
+                
+                $("#currentTaskField").html("<b><i>" + name + "</i></b>");
+                $("#currentProjectField").html(" for project: <b><i>" + proj_name +"</i></b>");
+                $("#hourglass").html('<%= image_tag "hourglass1.gif" %>');
+            } else {
+                setToNoCurrentTask();
+            }
+            
+            
+            
+            
             defaultMode();
         }
         
@@ -193,7 +218,7 @@
         
         setToNoCurrentTask();
         
-        updateTaskInfoFromServer();
+        //updateTaskInfoAndSendToServer();
         
 
         /*function myTimer() {
