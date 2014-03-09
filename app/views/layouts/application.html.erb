@@ -31,7 +31,7 @@
        <%= image_tag "ic_action_paste_m.png" %><%= link_to 'Projects', projects_path %> |
        <%= image_tag "ic_action_group_m.png" %><%= link_to 'Users', '/user/index' %> |
        <%= image_tag "ic_action_time_m.png" %><%= link_to 'Tasks', tasks_path %> |
-       <%= image_tag "ic_action_event_m.png" %><%= link_to 'Calendar', '/user/calendar/1' %> |
+       <%= image_tag "ic_action_event_m.png" %><%= link_to 'Calendar', calendar_for_user(current_user) %> |
        <%= image_tag "ic_action_about_m.png" %><%= link_to 'About', '/pages/about' %> 
 
        </center>
