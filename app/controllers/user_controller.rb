@@ -29,4 +29,9 @@ class UserController < ApplicationController
       render json: task
     end
   end
+
+  def approve_account
+    User.find(params[:id]).update_attribute(:approved, true)
+    redirect_to :users
+  end
 end
