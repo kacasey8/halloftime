@@ -1,6 +1,5 @@
 class UserController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :self_or_admin!, only: [:set_current_task, :complete_current_task, :tasks, :set_tasks]
   before_filter :authenticate_admin!, only: [:approve_account, :promote, :destroy]
 
   def self_or_admin!
@@ -20,6 +19,16 @@ class UserController < ApplicationController
   end
 
   def set_current_task
+    old_task = current_user.currentTask
+    if (old_task and not old_task.done)
+      seconds = Time.now - old_task.startTime
+      hours = seconds / 3600
+      minutes = seconds / 60
+      old_task.update_attributes(done: true, hours: hours.floor, minutes: minutes.floor)
+      #current_user.update_attribute(:currentTask_id, nil)
+    end
+    
+    
     temp_task = Task.create(name: params[:name], user: current_user, project_id: params[:project_id], hours: 0, minutes: 0, startTime: Time.now)
     current_user.update_attribute(:currentTask_id, temp_task.id)
     render json: {project: temp_task.project.name, time: temp_task.startTime.to_formatted_s(:short) }
@@ -57,7 +66,8 @@ class UserController < ApplicationController
   end
 
   def approve_account
-    User.find(params[:id]).update_attribute(:approved, true)
+    user = User.find(params[:id])
+    user.update_attribute(:approved, true)
     redirect_to :users, notice: user.email + ' was approved'
   end
 
