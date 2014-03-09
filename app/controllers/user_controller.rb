@@ -11,4 +11,10 @@ class UserController < ApplicationController
     @hours += @minutes / 60
     @minutes = @minutes % 60
   end
+
+  def set_current_task
+    require 'debugger'
+    debugger
+    p "hi"
+  end
 end

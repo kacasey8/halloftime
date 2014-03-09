@@ -123,6 +123,15 @@
             ///
             ///
             ///
+            $.ajax({
+                type: "GET",
+                url: '/user/set_current_task/',
+                data: {'name' : $("task_name").val(), 
+                        'project_id' : $("task_project_id").val() },
+                success: function(data) {
+                    console.log(data)
+                }
+            });
             
             $("#currentTaskField").replaceWith($("#task_name").val());
             
