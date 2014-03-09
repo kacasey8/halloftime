@@ -22,10 +22,10 @@ class UserController < ApplicationController
     task = current_user.currentTask
     if task
       seconds = Time.now - task.startTime
-      debugger
       hours = seconds / 3600
       minutes = seconds / 60
       task.update_attributes(done: true, hours: hours.floor, minutes: minutes.floor)
+      current_user.update_attribute(:currentTask_id, nil)
       render json: task
     end
   end
