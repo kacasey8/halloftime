@@ -2,7 +2,8 @@
 
 Hall of Time
 Ruby on Rails app
-Currently running on http://halloftime.herokuapp.com/user/calendar/3
+Currently running on http://halloftime.herokuapp.com
+Default admin on site (if unchanged) is admin@test.com with password '12345678'
 
 = Local setup 
  - git clone, 
@@ -21,7 +22,7 @@ Currently running on http://halloftime.herokuapp.com/user/calendar/3
  - Calendar updates on event creation rather than submission (presentation hack)
  - UTC vs PST bug on Calendar input.  Time is 7 hours behind.
  
- == Credits
+- Credits
   - Kevin Casey (only one who knew rails beforehand, thanks for working with me xD) - Backend/Routing
   - Anson Liu - JQuery Slider and Pebble application
   - Jack Chou - Calendar
