@@ -76,9 +76,8 @@
     this.currentLabel.text(Math.floor(this.maxMinutes / 2 / 60) + " hr " + this.maxMinutes / 2 % 60 + " min");
     this.input.val(this.maxMinutes / 2);
 
-    if ($("#originalMinutes").val() != -1) {
-      //window.alert($("#originalMinutes").val());
-      this.currentLabel.text(formatTime($("#originalMinutes").val() + ""));
+    if ($("#originalMinutes").val()) {
+      this.currentLabel.text($("#originalMinutes").val() +  " min");
       this.obj.slider("value", $("#originalMinutes").val());
       this.input.val($("#originalMinutes").val());
     }

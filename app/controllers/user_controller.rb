@@ -34,4 +34,23 @@ class UserController < ApplicationController
     User.find(params[:id]).update_attribute(:approved, true)
     redirect_to :users
   end
+
+  def tasks
+    render json: Task.where(user: User.find(params[:id])).map { |t| { id: t.id, title: t.name, start: t.startTime, :end => t.startTime + t.hours.hours + t.minutes.minutes }}
+  end
+
+  def set_tasks
+    data.each do |task|
+      temp_task = Task.where(id: task.id).first_or_create
+      seconds = task.end - task.start
+      hours = seconds / 3600
+      minutes = seconds / 60
+      temp_task.update_attributes(name: task.title, startTime: task.start, hours: hours.floor, minutes: minutes.floor)
+      if !temp_task.valid?
+        temp_project = Project.where(name: "UNKNOWN").first_or_create
+        temp_task.update_attribute(:project_id, temp_project.id)
+        temp_task.save
+      end
+    end
+  end
 end
