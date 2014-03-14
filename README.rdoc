@@ -2,6 +2,9 @@
 
 Hall of Time
 Ruby on Rails app
+
+http://www.calblueprint.org/hackathons/save-the-day-code-for-good/hacks/hall-of-time
+
 Currently running on http://halloftime.herokuapp.com
 Default admin on site (if unchanged) is admin@test.com with password '12345678'
 
